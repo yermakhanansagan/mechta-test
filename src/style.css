@@ -10,12 +10,15 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+html,
 body {
   padding: 0;
   margin: 0;
   height: 100%;
 }
-
+#app {
+  height: 100%;
+}
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;

@@ -48,4 +48,22 @@ const cities = [
     }
   }
 }
+
+@media (max-width: 768px) {
+  .cities {
+    &__title {
+      font-size: 1rem;
+    }
+    &__cities {
+      gap: 0.875rem;
+      &-city {
+        width: 129px;
+        padding: 0 0 0.625rem 1.2rem;
+        border-bottom: 1px solid #e9f0eb;
+        color: #28304480;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
 </style>

@@ -21,14 +21,21 @@ const options = [
 ];
 
 function onSelect(option: string) {
+  if (!options.includes(option)) {
+    selected.value = true;
+    error.value = true;
+    return;
+  }
   modelValue.value = option;
   selected.value = true;
+  error.value = false;
   emit("selected", option);
 }
 
 function onCLose() {
   modelValue.value = "";
   selected.value = false;
+  error.value = false;
   emit("selected", modelValue.value);
 }
 
@@ -99,7 +106,10 @@ watch(
       </button>
     </div>
 
-    <span v-if="error && !modelValue" class="city-select__error-message">
+    <span
+      v-if="error && modelValue && selected"
+      class="city-select__error-message"
+    >
       We didn’t found such city. Please check spelling</span
     >
   </div>
@@ -227,5 +237,20 @@ watch(
     #ff4757 15.15%,
     rgba(255, 255, 255, 0) 171.55%
   );
+}
+
+@media (max-width: 768px) {
+  .city-select {
+    min-width: 270px;
+
+    &__input {
+      padding: 1rem 0 0.9rem 1.2rem;
+      font-size: 1rem;
+    }
+    &__button-select {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+  }
 }
 </style>

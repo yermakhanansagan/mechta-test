@@ -35,4 +35,18 @@ defineEmits<{ (e: "selected", city: string): void }>();
     }
   }
 }
+
+@media (max-width: 768px) {
+  .select-block {
+    &__texts {
+      gap: 1.2rem;
+      &-title {
+        font-size: 2rem;
+      }
+      &-description {
+        font-size: 1rem;
+      }
+    }
+  }
+}
 </style>

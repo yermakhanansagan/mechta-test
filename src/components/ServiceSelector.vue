@@ -21,6 +21,7 @@ type CityInfo = {
 const props = defineProps<{ city: string }>();
 
 const cityInfo = ref<CityInfo[]>([]);
+const selected = ref<ServiceType | "">("");
 
 function defineImage(type: ServiceType) {
   switch (type) {
@@ -54,6 +55,9 @@ watch(
   async (newValue: string) => {
     if (newValue) {
       getData(newValue.toLowerCase());
+    } else {
+      cityInfo.value = [];
+      selected.value = "";
     }
   }
 );
@@ -68,6 +72,8 @@ watch(
       :price="item.price"
       :available="item.available"
       :img="defineImage(item.type as ServiceType)"
+      :selected="selected === item.type"
+      @on-select="(type) => (selected = type as ServiceType)"
     />
   </div>
 </template>

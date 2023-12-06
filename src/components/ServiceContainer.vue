@@ -1,16 +1,20 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+defineProps<{
+  type: string;
+  price: number;
+  img: string;
+  available: boolean;
+  selected: boolean;
+}>();
 
-defineProps<{ type: string; price: number; img: string; available: boolean }>();
-
-const selected = ref(false);
+defineEmits<{ (e: "onSelect", type: string): void }>();
 </script>
 
 <template>
   <button
     class="service"
     :class="{ 'not-available': !available, selected: selected }"
-    @click="selected = !selected"
+    @click="$emit('onSelect', type)"
   >
     <div class="service__info-container">
       <div class="service__info">
@@ -92,5 +96,42 @@ const selected = ref(false);
 }
 .selected {
   border: none;
+}
+@media (max-width: 768px) {
+  .service {
+    width: 271px;
+    height: 172px;
+    &__info-container {
+      padding: 1.2rem;
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-align: start;
+      justify-content: space-between;
+      &__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      &__cost {
+        color: #78a1bb;
+        font-size: 2rem;
+        font-weight: 700;
+      }
+    }
+    &__img {
+      display: flex;
+      align-items: center;
+      img {
+        height: 85px;
+        width: 85px;
+      }
+    }
+    &__accept {
+      width: 2.625rem;
+    }
+  }
 }
 </style>
