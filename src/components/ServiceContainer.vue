@@ -51,6 +51,7 @@ const firstLetterToUpperCase = (value: string) =>
   height: 224px;
   width: 523px;
   border: 1px solid #e9f0eb;
+  box-sizing: content-box;
   &__info-container {
     display: flex;
     width: 100%;
