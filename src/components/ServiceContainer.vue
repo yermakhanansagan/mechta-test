@@ -8,6 +8,9 @@ defineProps<{
 }>();
 
 defineEmits<{ (e: "onSelect", type: string): void }>();
+
+const firstLetterToUpperCase = (value: string) =>
+  value.charAt(0).toUpperCase() + value.slice(1);
 </script>
 
 <template>
@@ -18,7 +21,12 @@ defineEmits<{ (e: "onSelect", type: string): void }>();
   >
     <div class="service__info-container">
       <div class="service__info">
-        <span class="service__info__title">{{ type }}</span>
+        <div class="service__info__title">
+          <span>{{ firstLetterToUpperCase(type) }}</span>
+          <span v-if="!available" class="service__info__description">
+            Not availible in that city
+          </span>
+        </div>
         <span class="service__info__cost">{{ price }}$</span>
       </div>
       <span class="service__img">
@@ -59,8 +67,13 @@ defineEmits<{ (e: "onSelect", type: string): void }>();
     &__title {
       font-size: 2.25rem;
       font-weight: 700;
+      display: flex;
+      flex-direction: column;
     }
-
+    &__description {
+      font-size: 1.5rem;
+      opacity: 0.5;
+    }
     &__cost {
       color: #78a1bb;
       font-size: 3.125rem;
@@ -114,7 +127,10 @@ defineEmits<{ (e: "onSelect", type: string): void }>();
         font-size: 1.5rem;
         font-weight: 700;
       }
-
+      &__description {
+        font-size: 0.875rem;
+        opacity: 0.5;
+      }
       &__cost {
         color: #78a1bb;
         font-size: 2rem;
